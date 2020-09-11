@@ -27,17 +27,19 @@ namespace App.WebRazor.Pages
             _appService = appService;
         }
 
-        public void OnGetAsync(int guid)
+        public void OnGetAsync(Guid guid, bool showMess)
         {
             Guid = guid;
-           
+            show_mess = showMess;
         }
 
         [BindProperty]
         public PersonModel PersonModel { get; set; }
         [BindProperty]
-        public int Guid { get; set; }
-        
+        public Guid Guid { get; set; }
+        [BindProperty]
+        public bool show_mess { get; set; }
+
 
         public async Task<IActionResult> OnPostAsync(PersonModel PersonModel)
         {
@@ -50,7 +52,7 @@ namespace App.WebRazor.Pages
 
                 var Guid = await _appService.FindorInsertPerson(PersonModel);
                 
-                return await Task.FromResult(RedirectToPage("./Index", new { Guid = Guid }));
+                return await Task.FromResult(RedirectToPage("./Index", new { Guid = Guid,showMess = true}));
 
             }
         }

@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace App.Services.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -10,14 +11,15 @@ namespace App.Services.Migrations
                 name: "Person",
                 columns: table => new
                 {
-                    GUID = table.Column<int>(nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    GUID = table.Column<Guid>(nullable: false),
                     FirstName = table.Column<string>(maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(maxLength: 100, nullable: true)
+                    LastName = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Person", x => x.GUID);
+                    table.PrimaryKey("PK_Person", x => x.ID);
                 });
         }
 

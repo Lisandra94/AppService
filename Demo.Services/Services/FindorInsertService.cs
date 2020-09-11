@@ -20,12 +20,16 @@ namespace App.Services.Services
 
         }
 
-        public async Task<int> FindorInsertPerson(PersonModel person)
+        public async Task<Guid> FindorInsertPerson(PersonModel person)
         {
             var firstname_parameter = new SqlParameter("@_firstname", person.FirstName);
             var lastName_parameter = new SqlParameter("@_lastname", person.LastName);
 
-            var result = await _context.Person.FromSqlRaw("sp_insertPersonIfnotExists @_firstname,@_lastname", firstname_parameter, lastName_parameter).ToListAsync();
+            Guid g = Guid.NewGuid();
+
+            var guid_parameter = new SqlParameter("@_guid", g);
+
+            var result = await _context.Person.FromSqlRaw("sp_insertPersonIfnotExists @_firstname,@_lastname,@_guid", firstname_parameter, lastName_parameter, guid_parameter).ToListAsync();
             
             return await Task.FromResult(result[0].GUID);
         }

@@ -22,7 +22,7 @@ namespace App.WebRazor.Pages
         [BindProperty]
         public bool SearchForFirstName { get; set; }
         [BindProperty]
-        public List<int> list_guid { get; set; }
+        public List<string> list_guid { get; set; }
         [BindProperty]
         public bool emptyResult { get; set; }
 
@@ -35,7 +35,7 @@ namespace App.WebRazor.Pages
             _appService2 = appService;
         }
 
-        public void OnGetAsync(List<int> list, bool EmptyResult)
+        public void OnGetAsync(List<string> list, bool EmptyResult)
         {
             
             SearchForFirstName = true;

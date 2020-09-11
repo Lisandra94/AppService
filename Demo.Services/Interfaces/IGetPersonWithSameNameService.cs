@@ -9,7 +9,7 @@ namespace App.Services.Interfaces
     public interface IGetPersonWithSameNameService
     {
       
-        Task<List<int>> GetPersonWithSameName(string name, bool firstname);
+        Task<List<Guid>> GetPersonWithSameName(string name, bool firstname);
     }
    
 }

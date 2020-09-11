@@ -8,6 +8,6 @@ namespace App.Services.Interfaces
 {
     public interface IFinforInsertService
     {
-        Task<int> FindorInsertPerson(PersonModel person);
+        Task<Guid> FindorInsertPerson(PersonModel person);
     }
 }

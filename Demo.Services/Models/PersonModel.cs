@@ -10,7 +10,9 @@ namespace App.Services.Models
     public class PersonModel
     {
         [Key]
-        public int GUID { get; set; }
+        public int ID   { get; set; }
+        [Required]
+        public Guid GUID { get; set; }
         [Required]
         [StringLength(100)]
         public string FirstName { get; set; }

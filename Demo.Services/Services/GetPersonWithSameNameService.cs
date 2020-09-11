@@ -23,7 +23,7 @@ namespace App.Services.Services
 
         }
 
-        public async Task<List<int>> GetPersonWithSameName(string name, bool firstname)
+        public async Task<List<Guid>> GetPersonWithSameName(string name, bool firstname)
         {
             var firstname_parameter = new SqlParameter("@firstname", 1);
             if (!firstname)
@@ -34,7 +34,7 @@ namespace App.Services.Services
             var name_parameter = new SqlParameter("@name", name);
             var result = await _context.Person.FromSqlRaw("sp_findPersonWithSameName @name,@firstname ", name_parameter, firstname_parameter).ToListAsync();
 
-            var result_format = new List<int>();
+            var result_format = new List<Guid>();
 
             foreach (var l in result)
             {

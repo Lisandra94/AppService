@@ -27,7 +27,7 @@
                         <input type="submit" value="Search GUID" class="btn btn-primary" />
                     </div>
                 </form>
-                @{ if (Model.Guid != 0)
+                @{ if (@Model.show_mess)
                     {
                         <p>The person GUID is @Model.Guid</p>
                     }
