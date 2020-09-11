@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+        <h1>First Service</h1>
+
+        <p>Search the GUID of a person according to the Name and Surname (if it does not appear, the new person is inserted and the GUID returned)</p>
+        <hr />
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="PersonModel.FirstName" class="control-label"></label>
+                        <input asp-for="PersonModel.FirstName" class="form-control" />
+                        <span asp-validation-for="PersonModel.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PersonModel.LastName" class="control-label"></label>
+                        <input asp-for="PersonModel.LastName" class="form-control" />
+                        <span asp-validation-for="PersonModel.LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Search GUID" class="btn btn-primary" />
+                    </div>
+                </form>
+                @{ if (Model.Guid != 0)
+                    {
+                        <p>The person GUID is @Model.Guid</p>
+                    }
+
+                }
+
+            </div>
+            
+          </div>

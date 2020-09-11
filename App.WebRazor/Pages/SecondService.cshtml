@@ -1,0 +1,58 @@
+﻿@page
+@model SecondServiceModel
+@{
+    ViewData["Title"] = "Second Service";
+}
+<h1>Second Service</h1>
+
+<p>Find the profiles that match a name (The search can be by FirstName or by LastName)</p>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="@Model.Name" class="control-label"></label>
+                <input asp-for="@Model.Name" class="form-control" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="@Model.SearchForFirstName" class="control-label">Search For:</label><br />
+                <input type="radio" value=true asp-for="@Model.SearchForFirstName" />FirstName<br />
+                <input type="radio" value=false asp-for="@Model.SearchForFirstName" />LastName<br />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Search GUID Profile" class="btn btn-primary" />
+            </div>
+        </form>
+
+    </div>
+    <div class="col-md-6">
+        <div class="text-center">
+            @{
+                if (@Model.list_guid.Count != 0)
+                {
+                    <p>Profiles that match with the search </p>
+                    <ul>
+                        @foreach (var item in @Model.list_guid)
+                        {
+                            <li>@item</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    if (@Model.emptyResult)
+                    {
+                        <p>No results were found that machee with the search. </p>
+                    }
+
+                }
+            }
+        </div>
+
+    </div>
+
+</div>
