@@ -68,7 +68,7 @@ namespace App.WebRazor.Pages
                 }catch(Exception ex)
                 {
                     // redirect to Error page if an error occurs
-                    return await Task.FromResult(RedirectToPage("./Error", new { mess = ex }));
+                    return await Task.FromResult(RedirectToPage("./Error", new { mess = ex })); 
                 }
 
             }
