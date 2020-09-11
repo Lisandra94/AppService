@@ -15,7 +15,7 @@ namespace App.WebRazor.Pages
     public class SecondServiceModel : PageModel
     {
         private readonly ILogger<SecondServiceModel> _logger;
-        private readonly IAppService _appService;
+        private readonly IGetPersonWithSameNameService _appService2;
         [BindProperty]
         [Required]
         public string Name { get; set; }
@@ -29,10 +29,10 @@ namespace App.WebRazor.Pages
 
 
 
-        public SecondServiceModel(ILogger<SecondServiceModel> logger, IAppService appService)
+        public SecondServiceModel(ILogger<SecondServiceModel> logger, IGetPersonWithSameNameService appService)
         {
             _logger = logger;
-            _appService = appService;
+            _appService2 = appService;
         }
 
         public void OnGetAsync(List<int> list, bool EmptyResult)
@@ -53,7 +53,7 @@ namespace App.WebRazor.Pages
             else
             {
 
-                var list = await _appService.GetPersonWithSameName(Name,SearchForFirstName);
+                var list = await _appService2.GetPersonWithSameName(Name,SearchForFirstName);
 
                 if (list.Count == 0)
                 {

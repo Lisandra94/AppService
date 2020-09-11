@@ -18,10 +18,10 @@ namespace App.WebRazor.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly IAppService _appService;
+        private readonly IFinforInsertService _appService;
 
 
-        public IndexModel(ILogger<IndexModel> logger, IAppService appService)
+        public IndexModel(ILogger<IndexModel> logger, IFinforInsertService appService)
         {
             _logger = logger;
             _appService = appService;

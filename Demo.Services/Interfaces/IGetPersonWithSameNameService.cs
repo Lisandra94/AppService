@@ -6,10 +6,10 @@ using App.Services.Models;
 
 namespace App.Services.Interfaces
 {
-    public interface IAppService
+    public interface IGetPersonWithSameNameService
     {
-        Task<int> FindorInsertPerson(PersonModel person);
-
+      
         Task<List<int>> GetPersonWithSameName(string name, bool firstname);
     }
+   
 }
