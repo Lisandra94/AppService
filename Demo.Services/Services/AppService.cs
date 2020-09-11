@@ -22,15 +22,13 @@ namespace App.Services.Services
         }
 
         public async Task<List<int>> GetPersonWithSameName(string name,bool firstname)
-        {
-            
+        { 
             var firstname_parameter = new SqlParameter("@firstname", 1);
             if (!firstname)
             {
                firstname_parameter= new SqlParameter("@firstname", Zero);
             }
-           
-           
+            
             var name_parameter = new SqlParameter("@name", name);
             var result = await _context.Person.FromSqlRaw("sp_findPersonWithSameName @name,@firstname ", name_parameter,firstname_parameter).ToListAsync();
 
@@ -50,7 +48,6 @@ namespace App.Services.Services
             var lastName_parameter = new SqlParameter("@_lastname", person.LastName);
 
             var result = await _context.Person.FromSqlRaw("sp_insertPersonIfnotExists @_firstname,@_lastname", firstname_parameter, lastName_parameter).ToListAsync();
-
             
             return await Task.FromResult(result[0].GUID);
         }
