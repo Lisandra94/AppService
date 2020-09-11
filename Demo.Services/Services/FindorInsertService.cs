@@ -29,12 +29,21 @@ namespace App.Services.Services
 
             var guid_parameter = new SqlParameter("@_guid", g);
 
-            var result = await _context.Person.FromSqlRaw("sp_insertPersonIfnotExists @_firstname,@_lastname,@_guid", firstname_parameter, lastName_parameter, guid_parameter).ToListAsync();
-            
-            return await Task.FromResult(result[0].GUID);
+            try
+            {
+                var result = await _context.Person.FromSqlRaw("sp_insertPersonIfnotExists @_firstname,@_lastname,@_guid", firstname_parameter, lastName_parameter, guid_parameter).ToListAsync();
+
+                return await Task.FromResult(result[0].GUID);
+            }
+            catch(Exception )
+            {
+                //add error handling
+                throw new Exception("Error in the execution of the stored procedure sp_insertPersonIfnotExists");
+            }
+                
+            }
+                
         }
 
     }
 
-   
-}

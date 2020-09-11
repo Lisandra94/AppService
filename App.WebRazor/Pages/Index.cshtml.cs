@@ -49,10 +49,17 @@ namespace App.WebRazor.Pages
             }
             else
             {
+                try
+                {
+                    var Guid = await _appService.FindorInsertPerson(PersonModel);
 
-                var Guid = await _appService.FindorInsertPerson(PersonModel);
-                
-                return await Task.FromResult(RedirectToPage("./Index", new { Guid = Guid,showMess = true}));
+                    return await Task.FromResult(RedirectToPage("./Index", new { Guid = Guid, showMess = true }));
+                }catch(Exception ex)
+                {
+                    // redirect to Error page if an error occurs
+                    return await Task.FromResult(RedirectToPage("./Error", new { mess = ex }));
+                }
+              
 
             }
         }

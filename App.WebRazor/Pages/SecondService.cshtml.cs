@@ -52,6 +52,7 @@ namespace App.WebRazor.Pages
             }
             else
             {
+                try { 
 
                 var list = await _appService2.GetPersonWithSameName(Name,SearchForFirstName);
 
@@ -64,7 +65,11 @@ namespace App.WebRazor.Pages
                     return await Task.FromResult(RedirectToPage("./SecondService", new { list = list, EmptyResult = false }));
                 }
 
-               
+                }catch(Exception ex)
+                {
+                    // redirect to Error page if an error occurs
+                    return await Task.FromResult(RedirectToPage("./Error", new { mess = ex }));
+                }
 
             }
         }
